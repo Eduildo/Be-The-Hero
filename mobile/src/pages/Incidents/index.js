@@ -12,8 +12,8 @@ import styles from './styles';
 export default function Incidents(){
     const [incidents, setIncidents] = useState([])
     const [total, setTotal] = useState(0);
-    const [page, setPage] = useEffect(1);
-    const [loading, setLoading] = useEffect(false);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
 
     const navigation = useNavigation();
 
@@ -33,7 +33,7 @@ export default function Incidents(){
         setLoading(true);
 
         const response = await api.get('incidents', {
-            params:{ page }
+            params:{page}
         });
         
         setIncidents([...incidents, ...response.data]);
@@ -56,7 +56,7 @@ export default function Incidents(){
                 </Text>
             </View>
             <Text style={styles.title}>Bem Vindo!</Text>
-            <Text style={styles.description}>Escolha um dos casos abaixo e salve o dia</Text>
+            <Text style={styles.description}>Escolha um dos casos abaixo e salve o dia.</Text>
 
             <FlatList data={incidents} 
             style={styles.incidentList}
